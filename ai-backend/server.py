@@ -8,7 +8,8 @@ from apiModels import DrawingInput
 
 app = FastAPI()
 origins = [
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'https://sketch-murex.vercel.app'
 ]
 app.add_middleware(
     CORSMiddleware,
