@@ -17,6 +17,7 @@ app.add_middleware(
     allow_headers=['*']
 )
 stableModel = models.getCurrentModel()
+CATEGORY_INDEX = dataset.getCategoryIndex()
 
 @app.post("/ai/predict/")
 async def predict(data: DrawingInput):
@@ -27,6 +28,6 @@ async def predict(data: DrawingInput):
 
     singlePrediction = stableModel.predict(input)
     index = numpy.argmax(singlePrediction[0])
-    prediction = dataset.CATEGORY_INDEX[index]
+    prediction = CATEGORY_INDEX[index]
 
     return {'prediction': prediction}

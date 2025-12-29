@@ -1,11 +1,14 @@
 import os
-import random
+import json
 import numpy
 from PIL import Image
 
 PROCESSED_DIRECTORY = './data/processed'
 TESTING_DIRECTORY = './data/testing'
-CATEGORY_INDEX = sorted(os.listdir(PROCESSED_DIRECTORY))
+
+if os.path.isdir(PROCESSED_DIRECTORY) and not os.path.isfile('./categoryIndex.json'):
+    with open('categoryIndex.json', 'w') as file:
+        json.dump(sorted(os.listdir(PROCESSED_DIRECTORY)), file, indent=4)
 
 def getInputsAndLabels(directory):
     inputs = []
@@ -31,3 +34,7 @@ def getInput(img):
     arr = arr[..., numpy.newaxis]
 
     return arr
+
+def getCategoryIndex():
+    with open('categoryIndex.json', 'r') as file:
+        return json.load(file)
