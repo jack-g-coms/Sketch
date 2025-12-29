@@ -1,7 +1,6 @@
 const API_BASE = 'http://127.0.0.1:8000/ai';
 
 export const getPrediction = (drawing) => {
-    console.log(drawing);
     return fetch(`${API_BASE}/predict/`, {
         method: 'POST',
         headers: {
