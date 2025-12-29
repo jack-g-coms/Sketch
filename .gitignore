@@ -1,0 +1,7 @@
+ai-backend/.venv/
+ai-backend/data/
+ai-frontend/node_modules/
+ai-backend/models/
+ai-backend/__pycache__/
+ai-backend/utils/__pycache__/
+*.pyc

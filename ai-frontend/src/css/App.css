@@ -1,0 +1,14 @@
+* {
+  text-align: center;
+}
+
+h1, h2 {
+  color: white;
+  margin: 5px;
+}
+
+.prediction-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 20px;
+}
