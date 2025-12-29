@@ -16,11 +16,11 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
-stableModel = models.getCurrentModel()
 CATEGORY_INDEX = dataset.getCategoryIndex()
 
 @app.post("/ai/predict/")
 async def predict(data: DrawingInput):
+    stableModel = models.getCurrentModel()
     img = preprocess.drawingStrokesToImage(data.drawing)
 
     input = dataset.getInput(img)

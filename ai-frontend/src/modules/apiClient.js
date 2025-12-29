@@ -1,4 +1,4 @@
-const API_BASE = 'http://127.0.0.1:8000/ai';
+const API_BASE = 'https://sketch-hd6u.onrender.com/ai';
 
 export const getPrediction = (drawing) => {
     return fetch(`${API_BASE}/predict/`, {
