@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from 'react';
+import {useState, useRef} from 'react';
 
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack'
@@ -16,19 +16,6 @@ function Canvas({onSubmit}) {
     const [drawing, setDrawing] = useState([]);
     const [activeStroke, setActiveStroke] = useState(false);
     const [stroke, setStroke] = useState([[], []]);
-
-    useEffect(() => {
-        const preventScroll = (e) => {
-            if (activeStroke) {
-                e.preventDefault();
-            }
-        }
-
-        document.addEventListener('touchmove', preventScroll);
-        return () => {
-            document.removeEventListener('touchmove', preventScroll);
-        }
-    }, []);
 
     const getRelativePosition = (event) => {
         const canvas = canvasRef.current;
@@ -63,6 +50,7 @@ function Canvas({onSubmit}) {
 
     const captureStroke = (event) => {
         if (activeStroke) {
+            event.preventDefault();
             const [x, y] = getRelativePosition(event);
 
             setStroke((old) => {
@@ -97,6 +85,7 @@ function Canvas({onSubmit}) {
 
     const mouseDown = (event) => {
         if (canvasRef.current) {
+            event.preventDefault();
             if (activeStroke) {
                 finishStroke();
             }
@@ -106,6 +95,7 @@ function Canvas({onSubmit}) {
 
     const mouseUp = (event) => {
         if (activeStroke) {
+            event.preventDefault();
             finishStroke();
         }
     }
