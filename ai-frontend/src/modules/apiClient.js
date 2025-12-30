@@ -1,4 +1,4 @@
-const API_BASE = 'http://72.167.37.7:8000/ai';
+const API_BASE = 'https://sketchai.romestaff.com/ai';
 
 export const getPrediction = (drawing) => {
     return fetch(`${API_BASE}/predict/`, {
