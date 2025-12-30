@@ -6,3 +6,9 @@
     background-color: white;
     position: relative;
 }
+
+@media all and (min-width: 0px) and (max-width: 800px) {
+    .canvas {
+        width: 95%;
+    }
+}

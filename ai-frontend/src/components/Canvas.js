@@ -21,9 +21,19 @@ function Canvas({onSubmit}) {
         const canvas = canvasRef.current;
         const rect = event.target.getBoundingClientRect();
         
-        const x = ((event.clientX - rect.left) / rect.width) * canvas.width;
-        const y = ((event.clientY - rect.top) / rect.height) * canvas.height;
+        let clientX;
+        let clientY;
+        if (event.clientX && event.clientY) {
+            clientX = event.clientX
+            clientY = event.clientY
+        } else {
+            let touch = event.changedTouches[0];
+            clientX = touch.clientX;
+            clientY = touch.clientY;
+        }
 
+        const x = ((clientX - rect.left) / rect.width) * canvas.width;
+        const y = ((clientY - rect.top) / rect.height) * canvas.height; 
         return [Math.max(Math.round(x), 0), Math.max(Math.round(y), 0)];
     }
 
@@ -111,9 +121,15 @@ function Canvas({onSubmit}) {
         <canvas
             className='canvas'
             ref={canvasRef}
+
             onMouseDown={mouseDown}
             onMouseMove={captureStroke}
             onMouseUp={mouseUp}
+
+            onTouchStart={mouseDown}
+            onTouchMove={captureStroke}
+            onTouchEnd={mouseUp}
+
             height='256'
             width='256'
         />
